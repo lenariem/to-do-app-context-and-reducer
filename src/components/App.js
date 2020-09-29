@@ -1,17 +1,17 @@
-import React, {useEffect, useReducer, createContext} from 'react';
-import {Reducer} from "./Reducer";
+import React, { useEffect, useReducer, createContext } from "react";
+import { Reducer } from "./Reducer";
 import "../css/App.scss";
 import Navigation from "./Navigation";
 import ToDosContainer from "./ToDosContainer";
-import ToDonesContainer from './ToDonesContainer';
+import ToDonesContainer from "./ToDonesContainer";
 import Help from "./Help";
-import {HashRouter,Switch,Route} from "react-router-dom";
-import NotFound from './NotFound';
+import { HashRouter, Switch, Route } from "react-router-dom";
+import NotFound from "./NotFound";
 
 export const MyContext = createContext(null);
 
 export default function App() {
-
+  
   const initialItems = [
     { text: "first task", done: false, id: 0 },
     { text: "second task", done: false, id: 1 },
@@ -24,25 +24,22 @@ export default function App() {
   ];
 
   //items -global state, dispatch -actions(methods to reducer)
-  const [items,dispatch] = useReducer(Reducer,initialItems);
+  const [items, dispatch] = useReducer(Reducer, initialItems);
 
   useEffect(() => {
     let storedItems = localStorage.getItem("to-do-app");
     let convertedToOriginal = JSON.parse(storedItems);
-    if(storedItems !== null) {
-      dispatch({type: "localStorage", payload: convertedToOriginal})
+    if (storedItems !== null) {
+      dispatch({ type: "localStorage", payload: convertedToOriginal });
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem("to-do-app", JSON.stringify(items))
-  }, [items])
+    localStorage.setItem("to-do-app", JSON.stringify(items));
+  }, [items]);
 
-  /* const toDones = items.filter((item) => item.done === true);
-  const toDos = items.filter((item) => item.done === false);  */
-
-    return (
-    <MyContext.Provider value = {{dispatch, items}}>
+  return (
+    <MyContext.Provider value={{ dispatch, items }}>
       <HashRouter>
         <div className="app">
           <Navigation />
@@ -57,8 +54,5 @@ export default function App() {
         </div>
       </HashRouter>
     </MyContext.Provider>
-    )
-  }
-
-
-
+  );
+}

@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
-import { MyContext } from './App'
+import React, { useContext } from 'react';
+import { MyContext } from './App';
 
 export default function ToDoneItem({taskProps}) {
-    const {dispatch} = useContext(MyContext)
+    
+    const {dispatch} = useContext(MyContext);
+    
     return (
         <div className="todones-item">
             <p>{taskProps.text}</p>

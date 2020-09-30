@@ -1,4 +1,4 @@
-#### This App is written in React using Context, Reducer and Local Storage
+#### This App is written in React using Context, Reducer hooks and Local Storage
 
 ### In this app user can create and manage the own to-do list. 
 
